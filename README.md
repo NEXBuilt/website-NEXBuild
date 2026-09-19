@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NEXBuild — website
 
 Next.js 14 (App Router) · TypeScript · Tailwind CSS · Geist font.
@@ -58,3 +59,6 @@ lib/data.ts                all copy + content
 ## Deploy
 
 Push to GitHub, import the repo in Vercel, done. No environment variables needed.
+=======
+# website-NEXBuild
+>>>>>>> 287224b89737f3ffb22f1cc893137c5bc08c7337
