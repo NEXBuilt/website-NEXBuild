@@ -5,13 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F8F9FB",
+        paper: "rgb(var(--paper) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
         ink: {
-          DEFAULT: "#0B0D14",
-          soft: "#3A3F4F",
-          mute: "#6B7185",
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          soft: "rgb(var(--ink-soft) / <alpha-value>)",
+          mute: "rgb(var(--ink-mute) / <alpha-value>)",
         },
-        line: "#E4E7EE",
+        line: "rgb(var(--line) / <alpha-value>)",
         night: "#0A0B12",
         accent: {
           DEFAULT: "#4F46FF",

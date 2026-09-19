@@ -7,7 +7,7 @@ import type { Project } from "@/lib/data";
  */
 function Chrome({ children }: { children: React.ReactNode }) {
   return (
-    <div className="absolute inset-x-[6%] bottom-0 top-[9%] overflow-hidden rounded-t-2xl border border-b-0 border-line bg-white shadow-soft">
+    <div className="absolute inset-x-[6%] bottom-0 top-[9%] overflow-hidden rounded-t-2xl border border-b-0 border-line bg-surface shadow-soft">
       <div className="flex items-center gap-1.5 border-b border-line bg-paper px-4 py-2.5">
         <span className="h-2 w-2 rounded-full bg-ink/15" />
         <span className="h-2 w-2 rounded-full bg-ink/15" />
@@ -45,7 +45,7 @@ function UrbanMock() {
         ))}
       </div>
       {/* side panel */}
-      <div className="absolute bottom-4 right-4 top-4 hidden w-[30%] rounded-2xl border border-line bg-white p-4 shadow-soft sm:block">
+        <div className="absolute bottom-4 right-4 top-4 hidden w-[30%] rounded-2xl border border-line bg-surface p-4 shadow-soft sm:block">
         <div className="h-2.5 w-2/3 rounded-full bg-ink" />
         <div className="mt-4 space-y-3">
           {[80, 56, 68, 34].map((w, i) => (
@@ -68,13 +68,13 @@ function VolunteerMock() {
   return (
     <Chrome>
       <div className="flex h-full items-start justify-center bg-paper pt-6">
-        <div className="w-[62%] rounded-2xl border border-line bg-white p-5 shadow-soft">
+        <div className="w-[62%] rounded-2xl border border-line bg-surface p-5 shadow-soft">
           <div className="h-3 w-1/2 rounded-full bg-ink" />
           <div className="mt-2 h-2 w-3/4 rounded-full bg-ink/10" />
           <div className="mt-5 space-y-2.5">
             <div className="h-8 rounded-xl border border-line bg-paper" />
             <div className="h-8 rounded-xl border border-line bg-paper" />
-            <div className="h-8 rounded-xl border-2 border-accent/60 bg-white" />
+            <div className="h-8 rounded-xl border-2 border-accent/60 bg-surface" />
           </div>
           <div className="mt-4 h-8 rounded-full bg-accent" />
         </div>
@@ -89,7 +89,7 @@ function ToolsMock() {
       <div className="h-full bg-paper p-5">
         <div className="grid grid-cols-3 gap-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-2xl border border-line bg-white p-3">
+            <div key={i} className="rounded-2xl border border-line bg-surface p-3">
               <div className={`h-6 w-6 rounded-lg ${i % 3 === 0 ? "bg-accent" : "bg-accent/20"}`} />
               <div className="mt-3 h-2 w-3/4 rounded-full bg-ink/80" />
               <div className="mt-1.5 h-1.5 w-1/2 rounded-full bg-ink/10" />
@@ -110,7 +110,7 @@ export default function ProjectMockup({
 }) {
   return (
     <div
-      className={`relative w-full overflow-hidden bg-gradient-to-br from-accent-soft via-[#F3F4FA] to-white ${className}`}
+      className={`relative w-full overflow-hidden bg-gradient-to-br from-accent-soft via-[#F3F4FA] to-surface ${className}`}
     >
       {project.image ? (
         <Image

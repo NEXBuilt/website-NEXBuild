@@ -7,7 +7,7 @@ export default function FeaturedWork() {
   const [lead, ...rest] = projects;
 
   return (
-    <section id="work" className="bg-white py-24 md:py-32">
+    <section id="work" className="bg-surface py-24 md:py-32">
       <div className="container-x">
         <div className="max-w-2xl">
           <h2 className="h-section">Things we&apos;ve built</h2>
