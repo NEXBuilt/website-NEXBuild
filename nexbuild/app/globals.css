@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: #f8f9fb;
+  color: #0b0d14;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #4f46ff;
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid #4f46ff;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-6 md:px-10;
+  }
+
+  .h-display {
+    @apply font-semibold tracking-[-0.045em] leading-[0.98];
+  }
+
+  .h-section {
+    @apply text-4xl font-semibold leading-[1.04] tracking-[-0.035em] md:text-6xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium transition duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white shadow-[0_8px_24px_-8px_rgba(79,70,255,0.7)] hover:bg-accent-deep hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn border border-line bg-white text-ink hover:border-ink/30 hover:-translate-y-0.5;
+  }
+
+  .btn-ghost-dark {
+    @apply btn border border-white/20 bg-white/5 text-white hover:border-white/50 hover:-translate-y-0.5;
+  }
+
+  .card {
+    @apply rounded-card border border-line bg-white shadow-soft;
+  }
+
+  .input {
+    @apply w-full rounded-2xl border border-line bg-white px-4 py-3.5 text-[15px] text-ink outline-none transition placeholder:text-ink-mute focus:border-accent focus:ring-4 focus:ring-accent/10;
+  }
+}
+
+/* Scroll reveal — used sparingly (process + team) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animated grid for the dark CTA */
+.grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+}
+
+/* Light dotted grid for the hero */
+.dots-bg {
+  background-image: radial-gradient(rgba(11, 13, 20, 0.09) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 20%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
