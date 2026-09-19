@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/data";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexbuild.dev"), // EDIT ME — your real domain
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
