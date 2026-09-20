@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { nav } from "@/lib/data";
 
 export default function Navbar() {
@@ -52,10 +53,11 @@ export default function Navbar() {
             ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-accent"
+            className="inline-flex items-center rounded-full bg-night px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-accent"
           >
             Let&apos;s talk
           </Link>
@@ -63,16 +65,16 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white md:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             {open ? (
-              <path d="M4 4l10 10M14 4L4 14" stroke="#0B0D14" strokeWidth="1.7" strokeLinecap="round" />
+              <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
             ) : (
-              <path d="M3 6h12M3 12h12" stroke="#0B0D14" strokeWidth="1.7" strokeLinecap="round" />
+              <path d="M3 6h12M3 12h12" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
             )}
           </svg>
         </button>
@@ -92,6 +94,7 @@ export default function Navbar() {
           <Link href="/contact" className="btn-primary mt-3">
             Start a project
           </Link>
+          <div className="mt-3 px-4"><ThemeToggle /></div>
         </nav>
       )}
     </header>

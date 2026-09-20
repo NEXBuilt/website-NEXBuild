@@ -69,7 +69,7 @@ export default function CaseStudy({ params }: Props) {
           <Block title="Technology">
             <ul className="flex flex-wrap gap-2">
               {p.stack.map((s) => (
-                <li key={s} className="rounded-full border border-line bg-white px-4 py-1.5 text-[15px] text-ink-soft">
+                <li key={s} className="rounded-full border border-line bg-surface px-4 py-1.5 text-[15px] text-ink-soft">
                   {s}
                 </li>
               ))}
@@ -88,7 +88,7 @@ export default function CaseStudy({ params }: Props) {
 
         <Link
           href={`/work/${next.slug}`}
-          className="group mt-6 flex items-center justify-between rounded-card border border-line bg-white p-8 transition hover:border-accent/40 hover:shadow-lift md:p-10"
+          className="group mt-6 flex items-center justify-between rounded-card border border-line bg-surface p-8 transition hover:border-accent/40 hover:shadow-lift md:p-10"
         >
           <div>
             <p className="text-sm text-ink-mute">Next project</p>

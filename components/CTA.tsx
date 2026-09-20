@@ -21,7 +21,7 @@ export default function CTA({ href = "/contact" }: { href?: string }) {
         <div className="mt-10">
           <Link
             href={href}
-            className="btn bg-white text-ink hover:-translate-y-0.5 hover:bg-accent-soft"
+            className="btn bg-surface text-ink hover:-translate-y-0.5 hover:bg-accent-soft"
           >
             Start a project
             <Arrow />

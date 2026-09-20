@@ -25,11 +25,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled || open
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled || open
           ? "border-b border-line/80 bg-paper/75 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
-      }`}
+        }`}
     >
       <div className="container-x flex h-[72px] items-center justify-between">
         <Logo />
@@ -41,11 +40,10 @@ export default function Navbar() {
               <Link
                 key={n.href}
                 href={n.href}
-                className={`rounded-full px-4 py-2 text-[15px] transition ${
-                  isActive(n.href)
+                className={`rounded-full px-4 py-2 text-[15px] transition ${isActive(n.href)
                     ? "bg-ink/[0.06] text-ink"
                     : "text-ink-soft hover:bg-ink/[0.04] hover:text-ink"
-                }`}
+                  }`}
               >
                 {n.label}
               </Link>
@@ -55,7 +53,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-white transition hover:bg-accent"
+            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium !text-black transition hover:bg-accent hover:!text-black"
           >
             Let&apos;s talk
           </Link>

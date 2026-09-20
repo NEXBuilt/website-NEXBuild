@@ -16,7 +16,7 @@ const icons = [
 
 export default function Why() {
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-surface py-24 md:py-32">
       <div className="container-x">
         <div className="max-w-3xl">
           <h2 className="h-section">Small team. Serious builds.</h2>

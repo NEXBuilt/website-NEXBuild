@@ -28,7 +28,7 @@ export default function Process() {
             <li key={p.step} className="relative">
               <Reveal delay={i * 110}>
                 <div className="flex gap-6 lg:block">
-                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-white font-mono text-[15px] font-medium text-accent shadow-soft">
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-line bg-surface font-mono text-[15px] font-medium text-accent shadow-soft">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="lg:mt-8">

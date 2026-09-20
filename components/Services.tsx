@@ -58,7 +58,7 @@ export default function Services() {
           {services.map((s) => (
             <article
               key={s.title}
-              className="group relative overflow-hidden rounded-card border border-line bg-white p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift md:p-10"
+              className="group relative overflow-hidden rounded-card border border-line bg-surface p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift md:p-10"
             >
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
