@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const { name, email, phone, service, message } = await request.json();
@@ -20,6 +18,11 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
+
+    // Create the client only after validating the key. Resend throws during
+    // construction when its API key is missing, which would otherwise prevent
+    // this route from returning the helpful configuration response above.
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const { data, error } = await resend.emails.send({
       from: "NEXBuild Website <onboarding@resend.dev>",
