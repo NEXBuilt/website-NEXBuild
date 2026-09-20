@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { type PointerEvent, useRef } from "react";
 import type { Project } from "@/lib/data";
 
 /**
@@ -39,8 +42,8 @@ function UrbanMock() {
         {dots.map((d, i) => (
           <span
             key={i}
-            className={`absolute h-3.5 w-3.5 rounded-full ring-4 ring-white/80 ${d.c}`}
-            style={{ left: d.l, top: d.t }}
+            className={`project-ping absolute h-3.5 w-3.5 rounded-full ring-4 ring-white/80 ${d.c}`}
+            style={{ left: d.l, top: d.t, animationDelay: `${i * 180}ms` }}
           />
         ))}
       </div>
@@ -50,7 +53,7 @@ function UrbanMock() {
         <div className="mt-4 space-y-3">
           {[80, 56, 68, 34].map((w, i) => (
             <div key={i} className="h-2 rounded-full bg-ink/[0.07]">
-              <div className="h-2 rounded-full bg-accent" style={{ width: `${w}%` }} />
+              <div className="project-meter h-2 rounded-full bg-accent" style={{ width: `${w}%`, animationDelay: `${i * 140}ms` }} />
             </div>
           ))}
         </div>
@@ -68,7 +71,7 @@ function VolunteerMock() {
   return (
     <Chrome>
       <div className="flex h-full items-start justify-center bg-paper pt-6">
-        <div className="w-[62%] rounded-2xl border border-line bg-surface p-5 shadow-soft">
+        <div className="project-float-card w-[62%] rounded-2xl border border-line bg-surface p-5 shadow-soft">
           <div className="h-3 w-1/2 rounded-full bg-ink" />
           <div className="mt-2 h-2 w-3/4 rounded-full bg-ink/10" />
           <div className="mt-5 space-y-2.5">
@@ -89,7 +92,7 @@ function ToolsMock() {
       <div className="h-full bg-paper p-5">
         <div className="grid grid-cols-3 gap-3">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="rounded-2xl border border-line bg-surface p-3">
+            <div key={i} className="project-tool-card rounded-2xl border border-line bg-surface p-3" style={{ animationDelay: `${i * 110}ms` }}>
               <div className={`h-6 w-6 rounded-lg ${i % 3 === 0 ? "bg-accent" : "bg-accent/20"}`} />
               <div className="mt-3 h-2 w-3/4 rounded-full bg-ink/80" />
               <div className="mt-1.5 h-1.5 w-1/2 rounded-full bg-ink/10" />
@@ -108,10 +111,35 @@ export default function ProjectMockup({
   project: Project;
   className?: string;
 }) {
+  const previewRef = useRef<HTMLDivElement>(null);
+
+  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    const preview = previewRef.current;
+    if (!preview) return;
+
+    const bounds = preview.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    preview.style.setProperty("--tilt-x", `${y * -7}deg`);
+    preview.style.setProperty("--tilt-y", `${x * 9}deg`);
+    preview.style.setProperty("--glow-x", `${(x + 0.5) * 100}%`);
+    preview.style.setProperty("--glow-y", `${(y + 0.5) * 100}%`);
+  };
+
+  const resetTilt = () => {
+    const preview = previewRef.current;
+    preview?.style.setProperty("--tilt-x", "0deg");
+    preview?.style.setProperty("--tilt-y", "0deg");
+  };
+
   return (
     <div
-      className={`relative w-full overflow-hidden bg-gradient-to-br from-accent-soft via-[#F3F4FA] to-surface ${className}`}
+      ref={previewRef}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+      className={`project-preview relative w-full overflow-hidden bg-gradient-to-br from-accent-soft via-[#F3F4FA] to-surface ${className}`}
     >
+      <div className="project-preview-glow absolute inset-0" aria-hidden="true" />
       {project.image ? (
         <Image
           src={project.image}

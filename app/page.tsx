@@ -7,10 +7,11 @@ import Why from "@/components/Why";
 import Team from "@/components/Team";
 import CTA from "@/components/CTA";
 import ContactSection from "@/components/ContactSection";
+import HomeMotion from "@/components/HomeMotion";
 
 export default function Home() {
   return (
-    <>
+    <HomeMotion>
       <Hero />
       <TrustStrip />
       <Services />
@@ -20,6 +21,6 @@ export default function Home() {
       <Team />
       <CTA href="#contact" />
       <ContactSection />
-    </>
+    </HomeMotion>
   );
 }

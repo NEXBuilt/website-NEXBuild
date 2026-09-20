@@ -1,9 +1,19 @@
 import Link from "next/link";
 import Arrow from "./Arrow";
+import HeroOrbital from "./HeroOrbital";
+
+const techStack = ["React", "Next.js", "Python", "FastAPI", "AI / LLMs", "APIs"];
+
+const stats = [
+  { value: "3+", label: "Years building" },
+  { value: "20+", label: "Projects shipped" },
+  { value: "100%", label: "Code by us" },
+];
 
 function Ecosystem() {
   return (
     <div className="relative mx-auto aspect-[520/480] w-full max-w-[520px]" aria-hidden="true">
+      <HeroOrbital />
       {/* connectors */}
       <svg
         className="absolute inset-0 h-full w-full"
@@ -31,14 +41,14 @@ function Ecosystem() {
           className="animate-dash"
         />
       </svg>
-      <span className="absolute left-1/2 top-[38%] h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent ring-4 ring-accent/15" />
+      <span className="absolute left-1/2 top-[38%] z-10 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent ring-4 ring-accent/15" />
 
       {/* Analytics */}
       <div
         className="absolute left-[22%] top-0 h-[38%] w-[56%] animate-float"
         style={{ animationDelay: "-2s" }}
       >
-        <div className="card flex h-full flex-col justify-between p-4 sm:p-5">
+        <div className="card flex h-full flex-col justify-between p-4 sm:p-5 bg-surface/90 backdrop-blur-sm">
           <div className="flex items-center justify-between text-[12px] font-medium text-ink-mute">
             <span>Analytics</span>
             <span className="rounded-full bg-accent-soft px-2 py-0.5 text-accent">This month</span>
@@ -68,7 +78,7 @@ function Ecosystem() {
         className="absolute left-0 top-[58%] h-[38%] w-[47%] animate-float-slow"
         style={{ animationDelay: "-4s" }}
       >
-        <div className="card flex h-full flex-col overflow-hidden">
+        <div className="card flex h-full flex-col overflow-hidden bg-surface/90 backdrop-blur-sm">
           <div className="flex items-center gap-1 border-b border-line px-3 py-2">
             <span className="h-1.5 w-1.5 rounded-full bg-ink/15" />
             <span className="h-1.5 w-1.5 rounded-full bg-ink/15" />
@@ -88,7 +98,7 @@ function Ecosystem() {
         className="absolute right-0 top-[62%] h-[38%] w-[47%] animate-float"
         style={{ animationDelay: "-5.5s" }}
       >
-        <div className="flex h-full flex-col justify-between rounded-card bg-night p-4 text-white shadow-lift sm:p-5">
+        <div className="flex h-full flex-col justify-between rounded-card bg-night/95 p-4 text-white shadow-lift backdrop-blur-sm sm:p-5 border border-accent/20">
           <div className="flex items-center gap-2 text-[12px] font-medium text-white/70">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
               <path d="M8 1l1.6 4.4L14 7l-4.4 1.6L8 13l-1.6-4.4L2 7l4.4-1.6z" fill="#8B85FF" />
@@ -112,7 +122,13 @@ function Ecosystem() {
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
+      {/* Dot background */}
       <div className="dots-bg pointer-events-none absolute inset-0" aria-hidden="true" />
+      {/* Glassmorphism overlay so text is readable over 3D canvas */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-paper/70 via-paper/40 to-transparent"
+        aria-hidden="true"
+      />
       <div
         className="pointer-events-none absolute -right-24 top-32 h-[420px] w-[420px] rounded-full bg-accent/10 blur-3xl"
         aria-hidden="true"
@@ -120,6 +136,12 @@ export default function Hero() {
 
       <div className="container-x relative grid items-center gap-14 pb-20 pt-10 md:pt-16 lg:grid-cols-[1.15fr_1fr] lg:gap-8 lg:pb-28 lg:pt-20">
         <div>
+          {/* Label pill */}
+          <div className="animate-rise mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-soft px-4 py-1.5 text-sm font-semibold text-accent">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+            Software Studio &middot; Building what&apos;s next
+          </div>
+
           <h1 className="h-display animate-rise text-[56px] sm:text-7xl lg:text-[88px]">
             We build
             <br />
@@ -131,6 +153,8 @@ export default function Hero() {
           >
             Digital products, websites, dashboards and AI&#8209;powered solutions for growing businesses.
           </p>
+
+          {/* CTA buttons */}
           <div
             className="mt-10 flex animate-rise flex-wrap gap-3"
             style={{ animationDelay: "240ms" }}
@@ -142,6 +166,36 @@ export default function Hero() {
             <Link href="/work" className="btn-ghost">
               View our work
             </Link>
+          </div>
+
+          {/* Stats bar */}
+          <div
+            className="mt-12 animate-rise"
+            style={{ animationDelay: "360ms" }}
+          >
+            <div className="inline-flex divide-x divide-line rounded-2xl border border-line bg-surface/80 backdrop-blur-sm shadow-soft overflow-hidden">
+              {stats.map((s) => (
+                <div key={s.label} className="flex flex-col items-center px-6 py-4">
+                  <span className="text-2xl font-bold tracking-tight text-ink">{s.value}</span>
+                  <span className="text-xs font-medium text-ink-mute mt-0.5">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tech stack pills */}
+          <div
+            className="mt-8 animate-rise flex flex-wrap gap-2"
+            style={{ animationDelay: "440ms" }}
+          >
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-line bg-paper/80 backdrop-blur-sm px-3 py-1 text-sm text-ink-mute transition hover:border-accent/30 hover:text-accent"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
         </div>
 

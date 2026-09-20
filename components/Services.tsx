@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { services, ServiceIcon } from "@/lib/data";
 
 function Icon({ name }: { name: ServiceIcon }) {
   const common = {
-    width: 26,
-    height: 26,
+    width: 24,
+    height: 24,
     viewBox: "0 0 26 26",
     fill: "none",
     stroke: "currentColor",
@@ -43,44 +44,83 @@ function Icon({ name }: { name: ServiceIcon }) {
   }
 }
 
+const serviceImages: Record<ServiceIcon, string> = {
+  web: "/services/web-dev.jpg",
+  chart: "/services/dashboard.jpg",
+  spark: "/services/ai.jpg",
+  server: "/services/backend.jpg",
+};
+
+const serviceGradients: Record<ServiceIcon, string> = {
+  web: "from-indigo-900/80 via-indigo-800/40 to-transparent",
+  chart: "from-violet-900/80 via-violet-800/40 to-transparent",
+  spark: "from-purple-900/80 via-purple-800/40 to-transparent",
+  server: "from-blue-900/80 via-indigo-800/40 to-transparent",
+};
+
 export default function Services() {
   return (
-    <section id="services" className="py-24 md:py-32">
-      <div className="container-x">
+    <section id="services" className="relative py-24 md:py-32">
+      {/* Subtle section bg */}
+      <div className="absolute inset-0 bg-paper/60 backdrop-blur-[2px]" aria-hidden="true" />
+
+      <div className="container-x relative">
         <div className="max-w-2xl">
-          <h2 className="h-section">What we build</h2>
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">What we build</p>
+          <h2 className="h-section">Services</h2>
           <p className="mt-5 text-lg text-ink-soft md:text-xl">
             From your first idea to a production-ready product.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {services.map((s) => (
             <article
               key={s.title}
-              className="group relative overflow-hidden rounded-card border border-line bg-surface p-8 shadow-soft transition duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-lift md:p-10"
+              className="service-card group relative overflow-hidden rounded-card border border-line bg-surface shadow-soft transition duration-300 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-lift"
             >
+              {/* Top accent line on hover */}
               <div
-                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10"
                 aria-hidden="true"
               />
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-soft text-accent">
-                <Icon name={s.icon} />
+
+              {/* Image header */}
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={serviceImages[s.icon]}
+                  alt={s.title}
+                  fill
+                  sizes="(min-width: 768px) 580px, 100vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* gradient overlay */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-b ${serviceGradients[s.icon]}`}
+                />
+                {/* Icon badge */}
+                <div className="absolute bottom-4 left-5 z-10 flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-white shadow-lg shadow-accent/30">
+                  <Icon name={s.icon} />
+                </div>
               </div>
-              <h3 className="mt-16 text-2xl font-semibold tracking-[-0.025em] md:text-[28px]">
-                {s.title}
-              </h3>
-              <p className="mt-3 max-w-md text-[17px] leading-relaxed text-ink-soft">{s.blurb}</p>
-              <ul className="mt-8 flex flex-wrap gap-2">
-                {s.tags.map((t) => (
-                  <li
-                    key={t}
-                    className="rounded-full border border-line bg-paper px-3 py-1 text-sm text-ink-soft"
-                  >
-                    {t}
-                  </li>
-                ))}
-              </ul>
+
+              {/* Content */}
+              <div className="p-7 md:p-8">
+                <h3 className="text-2xl font-semibold tracking-[-0.025em] md:text-[26px]">
+                  {s.title}
+                </h3>
+                <p className="mt-3 max-w-md text-[16px] leading-relaxed text-ink-soft">{s.blurb}</p>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {s.tags.map((t) => (
+                    <li
+                      key={t}
+                      className="rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-sm font-medium text-accent"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))}
         </div>

@@ -90,7 +90,7 @@ export const projects: Project[] = [
     summary:
       "A live city map that surfaces road damage and incidents so teams can see problems the moment they appear.",
     stack: ["React", "Vite", "Leaflet", "APIs"],
-    image: undefined,
+    image: "/projects/urban-sensing.jpg",
     liveUrl: undefined,
     problem:
       "City teams collect road and incident data from many sources, but it sits in separate tools. Spotting where damage is clustering, and what to fix first, takes manual digging.",
@@ -114,6 +114,7 @@ export const projects: Project[] = [
     summary:
       "A mobile-friendly registration flow that gets volunteers signed up in minutes and gives organisers a clean list.",
     stack: ["React", "Backend", "Responsive UI"],
+    image: "/projects/volunteer-system.jpg",
     problem:
       "Organisers were collecting volunteer sign-ups through scattered forms and messages, then cleaning the data by hand before every event.",
     solution:

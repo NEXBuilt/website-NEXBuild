@@ -5,6 +5,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/data";
+import dynamic from "next/dynamic";
+
+const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexbuild.dev"), // EDIT ME — your real domain
@@ -31,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: `try { const theme = localStorage.getItem('nexbuild-theme'); const dark = theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches); document.documentElement.classList.toggle('dark', dark); } catch (_) {}` }} />
       </head>
       <body className="font-sans">
+        <ThreeBackground />
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>

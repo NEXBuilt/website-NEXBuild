@@ -72,40 +72,87 @@ const socialLinks = [
   { label: "Gmail", href: `mailto:${site.email}`, icon: "email" as const },
 ];
 
+// Vibrant avatar background gradients for each member
+const avatarGradients = [
+  "from-[#1a1460] via-[#312ab0] to-[#7c6bff]",
+  "from-[#0d1f40] via-[#1b3a8a] to-[#4f8aff]",
+  "from-[#200d40] via-[#4a1a80] to-[#9b5aff]",
+];
+
+// Initial letter background for avatar placeholder
+function AvatarPlaceholder({
+  name,
+  gradientClass,
+}: {
+  name: string;
+  gradientClass: string;
+}) {
+  return (
+    <div
+      className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${gradientClass} relative overflow-hidden`}
+    >
+      {/* Decorative circles */}
+      <div className="absolute -top-8 -left-8 h-32 w-32 rounded-full bg-white/5" />
+      <div className="absolute -bottom-6 -right-6 h-24 w-24 rounded-full bg-white/5" />
+      <div className="absolute top-1/2 left-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+
+      {/* Initial */}
+      <span className="relative z-10 text-[80px] font-bold tracking-tight text-white/80 select-none drop-shadow-lg">
+        {name[0]}
+      </span>
+    </div>
+  );
+}
+
 export default function Team() {
   return (
-    <section id="team" className="py-24 md:py-32">
-      <div className="container-x">
+    <section id="team" className="relative py-24 md:py-32">
+      <div className="absolute inset-0 bg-surface/70 backdrop-blur-[2px]" aria-hidden="true" />
+
+      <div className="container-x relative">
         <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent mb-3">The team</p>
           <h2 className="h-section">Meet the builders</h2>
           <p className="mt-5 text-lg text-ink-soft md:text-xl">
             Three developers. Everyone here writes code for your project.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {team.map((m, i) => (
-            <Reveal key={m.name} delay={i * 100}>
-              <article className="card overflow-hidden">
-                <div className="relative aspect-[4/3] bg-gradient-to-br from-accent-soft to-[#E1E4F5]">
+            <Reveal key={m.name} delay={i * 120}>
+              <article className="group relative overflow-hidden rounded-card border border-line bg-surface shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/40 hover:shadow-lift">
+                {/* Top accent line on hover */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10"
+                  aria-hidden="true"
+                />
+
+                {/* Avatar */}
+                <div className="relative aspect-[4/3] overflow-hidden">
                   {m.photo ? (
                     <Image
                       src={m.photo}
                       alt={`Portrait of ${m.name}`}
                       fill
                       sizes="(min-width: 768px) 380px, 100vw"
-                      className="object-cover"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="flex h-full items-center justify-center text-[88px] font-semibold tracking-[-0.06em] text-accent/70">
-                      {m.name[0]}
-                    </div>
+                    <AvatarPlaceholder
+                      name={m.name}
+                      gradientClass={avatarGradients[i % avatarGradients.length]}
+                    />
                   )}
+                  {/* Subtle bottom gradient */}
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface/60 to-transparent" />
                 </div>
+
+                {/* Card body */}
                 <div className="p-7">
                   <h3 className="text-2xl font-semibold tracking-[-0.025em]">{m.name}</h3>
-                  <p className="mt-1 text-[15px] text-ink-mute">{m.role}</p>
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <p className="mt-1 text-[15px] text-accent font-medium">{m.role}</p>
+                  <ul className="mt-4 flex flex-wrap gap-2">
                     {m.skills.map((s) => (
                       <li key={s} className="rounded-full border border-line bg-paper px-3 py-1 text-sm text-ink-soft">
                         {s}
@@ -121,7 +168,7 @@ export default function Team() {
                         rel={social.icon === "email" ? undefined : "noreferrer"}
                         aria-label={`${m.name} on ${social.label}`}
                         title={social.label}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-accent hover:text-accent"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft transition hover:border-accent hover:bg-accent-soft hover:text-accent"
                       >
                         <SocialIcon name={social.icon} />
                       </a>
@@ -133,16 +180,17 @@ export default function Team() {
           ))}
         </div>
 
-        <div className="mt-5 grid overflow-hidden rounded-card border border-line bg-surface md:grid-cols-[1.05fr_.95fr]">
+        {/* Team photo banner */}
+        <div className="mt-6 grid overflow-hidden rounded-card border border-line bg-surface md:grid-cols-[1.05fr_.95fr]">
           <div className="relative min-h-[270px] overflow-hidden photo-tint md:min-h-[340px]">
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=85"
               alt="A team collaborating around a table"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
           <div className="flex flex-col justify-center p-8 md:p-12">
-            <p className="text-sm font-medium text-accent">Small team, close collaboration</p>
+            <p className="text-sm font-semibold text-accent">Small team, close collaboration</p>
             <h3 className="mt-3 text-3xl font-semibold tracking-[-0.035em] md:text-4xl">
               The people in the room are the people doing the work.
             </h3>
