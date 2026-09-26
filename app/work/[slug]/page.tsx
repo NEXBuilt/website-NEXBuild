@@ -43,10 +43,28 @@ export default function CaseStudy({ params }: Props) {
           <p className="text-sm font-medium text-accent">{p.category}</p>
           <h1 className="h-display mt-3 text-5xl md:text-7xl">{p.title}</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">{p.summary}</p>
+          {p.liveUrl && (
+            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-primary mt-8">
+              View Live Demo
+              <Arrow />
+            </a>
+          )}
         </header>
 
         <div className="group mt-12 overflow-hidden rounded-card border border-line">
-          <ProjectMockup project={p} className="aspect-[16/9] md:aspect-[2/1]" />
+          {p.video ? (
+            <video
+              src={p.video}
+              poster={p.image}
+              controls
+              playsInline
+              preload="metadata"
+              aria-label={`${p.title} demo video`}
+              className="block aspect-[1896/914] h-auto w-full object-cover"
+            />
+          ) : (
+            <ProjectMockup project={p} className="aspect-[16/9] md:aspect-[2/1]" />
+          )}
         </div>
 
         <div className="mt-10">

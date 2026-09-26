@@ -140,7 +140,19 @@ export default function ProjectMockup({
       className={`project-preview relative w-full overflow-hidden bg-gradient-to-br from-accent-soft via-[#F3F4FA] to-surface ${className}`}
     >
       <div className="project-preview-glow absolute inset-0" aria-hidden="true" />
-      {project.image ? (
+      {project.video ? (
+        <video
+          src={project.video}
+          poster={project.image}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={`${project.title} demo`}
+          className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-[1.04]"
+        />
+      ) : project.image ? (
         <Image
           src={project.image}
           alt={`${project.title} screenshot`}

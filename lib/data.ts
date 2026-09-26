@@ -75,6 +75,11 @@ export type Project = {
    * e.g. "/projects/urban-sensing.png". Until then a mockup placeholder shows.
    */
   image?: string;
+  /**
+   * Optional demo video in /public/projects, e.g. "/projects/ai-resume-analyzer.mp4".
+   * Takes the place of the screenshot on cards and the case study page.
+   */
+  video?: string;
   liveUrl?: string; // EDIT ME — link to the live project
   problem: string;
   solution: string;
@@ -149,6 +154,30 @@ export const projects: Project[] = [
     // EDIT ME — replace with a real outcome or metric
     result:
       "One place for everyday tools, with usage data that guides what gets built next.",
+  },
+  {
+    slug: "ai-resume-analyzer",
+    title: "AI Resume Analyzer",
+    category: "Web app · AI",
+    summary:
+      "Upload a resume and get an instant AI review: a score, missing skills and clear suggestions to make it stronger.",
+    stack: ["Python", "AI", "LLMs", "Web app"], // EDIT ME
+    image: "/projects/Resume.png",
+    video: "/projects/ai-resume-analyzer.mp4",
+    liveUrl: "https://ai-resume-analyizer-1.onrender.com",
+    problem:
+      "Job seekers rarely get honest feedback on their resume. They send the same document to every role without knowing what recruiters and screening tools are looking for.",
+    solution:
+      "We built a web app that reads an uploaded resume, analyses it with AI, and returns a structured review with a score, gaps and specific improvements.",
+    features: [
+      "Resume upload and parsing",
+      "AI-powered resume scoring",
+      "Skill gap detection",
+      "Actionable improvement tips",
+    ],
+    // EDIT ME — replace with a real outcome or metric
+    result:
+      "Candidates get useful feedback in seconds and know exactly what to fix before they apply.",
   },
 ];
 
